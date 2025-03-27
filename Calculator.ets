@@ -16,6 +16,43 @@ struct Calculator {
   // 最大表达式长度（包括操作符和空格）
   private MAX_EXPRESSION_LENGTH: number = 30
 
+  // 处理正负号切换
+  handleToggleSign() {
+    if (this.currentInput === 'Error') return;
+    
+    // 如果当前输入为0，不需要切换符号
+    if (this.currentInput === '0') return;
+    
+    // 获取当前输入的最后一个数字部分
+    const parts = this.currentInput.split(/([+\-×÷])/);
+    const lastPart = parts[parts.length - 1].trim();
+    
+    if (lastPart !== '') {
+      // 如果最后一部分是数字，切换其正负号
+      const value = parseFloat(lastPart);
+      const newValue = -value;
+      
+      // 更新显示
+      if (parts.length > 1) {
+        // 如果存在运算符，只更新最后一个数字
+        parts[parts.length - 1] = ` ${newValue}`;
+        this.currentInput = parts.join('');
+      } else {
+        // 如果只有一个数字，直接更新
+        this.currentInput = newValue.toString();
+      }
+    }
+  }
+
+  // 处理百分比计算
+  handlePercent() {
+    if (this.currentInput === 'Error') return;
+    
+    const value = parseFloat(this.currentInput);
+    this.currentInput = (value / 100).toString();
+    this.isNewInput = true;
+  }
+
   // 处理数字按钮点击
   handleNumber(num: string) {
 
@@ -598,7 +635,6 @@ struct Calculator {
             .borderRadius(8)
             .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
-
         GridItem() {
           Button('0')
             .onClick(() => this.handleNumber('0'))
@@ -606,10 +642,8 @@ struct Calculator {
             .border({ width: 1, color: '#e0e0e0' })
             .borderRadius(8)
             .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
-            .width('100%')
             .fontColor('#000000')
-        }.columnStart(0).columnEnd(1)
-
+        }
         GridItem() { 
           Button('.')
             .onClick(() => this.handleNumber('.'))
@@ -618,6 +652,13 @@ struct Calculator {
             .borderRadius(8)
             .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
             .fontColor('#000000')
+        }
+        GridItem() {
+          Button('+/-')
+            .onClick(() => this.handleToggleSign())
+            .backgroundColor('#ff9800')
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
         GridItem() {
           Button('=')
