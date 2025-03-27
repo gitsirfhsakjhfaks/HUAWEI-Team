@@ -393,11 +393,51 @@ struct Calculator {
       // 内存功能按钮（科学模式下显示）
       if (this.isScientificMode) {
         Row() {
-          Button('MC').onClick(() => this.memoryFunction('MC')).width('18%')
-          Button('MR').onClick(() => this.memoryFunction('MR')).width('18%')
-          Button('MS').onClick(() => this.memoryFunction('MS')).width('18%')
-          Button('M+').onClick(() => this.memoryFunction('M+')).width('18%')
-          Button('M-').onClick(() => this.memoryFunction('M-')).width('18%')
+          Button('MC')
+            .onClick(() => this.memoryFunction('MC'))
+            .backgroundColor('#f5f5f5')
+            .fontColor('#000000')
+            .fontSize(16)
+            .width('18%')
+            .height(40)
+            .padding(8)
+            .borderRadius(8)
+          Button('MR')
+            .onClick(() => this.memoryFunction('MR'))
+            .backgroundColor('#f5f5f5')
+            .fontColor('#000000')
+            .fontSize(16)
+            .width('18%')
+            .height(40)
+            .padding(8)
+            .borderRadius(8)
+          Button('MS')
+            .onClick(() => this.memoryFunction('MS'))
+            .backgroundColor('#f5f5f5')
+            .fontColor('#000000')
+            .fontSize(16)
+            .width('18%')
+            .height(40)
+            .padding(8)
+            .borderRadius(8)
+          Button('M+')
+            .onClick(() => this.memoryFunction('M+'))
+            .backgroundColor('#f5f5f5')
+            .fontColor('#000000')
+            .fontSize(16)
+            .width('18%')
+            .height(40)
+            .padding(8)
+            .borderRadius(8)
+          Button('M-')
+            .onClick(() => this.memoryFunction('M-'))
+            .backgroundColor('#f5f5f5')
+            .fontColor('#000000')
+            .fontSize(16)
+            .width('18%')
+            .height(40)
+            .padding(8)
+            .borderRadius(8)
         }
         .width('100%')
         .justifyContent(FlexAlign.SpaceBetween)
@@ -407,15 +447,14 @@ struct Calculator {
       // 科学计算按钮（科学模式下显示）
       if (this.isScientificMode) {
         Grid() {
-          GridItem() { Button('sin').onClick(() => this.scientificFunction('sin')) }
-          GridItem() { Button('cos').onClick(() => this.scientificFunction('cos')) }
-          GridItem() { Button('tan').onClick(() => this.scientificFunction('tan')) }
-          GridItem() { Button('√').onClick(() => this.scientificFunction('sqrt')) }
-
-          GridItem() { Button('log').onClick(() => this.scientificFunction('log')) }
-          GridItem() { Button('ln').onClick(() => this.scientificFunction('ln')) }
-          GridItem() { Button('x²').onClick(() => this.scientificFunction('square')) }
-          GridItem() { Button('xʸ').onClick(() => this.handleOperator('pow')) }
+          GridItem() { Button('sin').onClick(() => this.scientificFunction('sin')).backgroundColor('#f5f5f5').fontColor('#333333').fontSize(20).padding(10).border({ width: 1, color: '#e0e0e0' }).borderRadius(8).shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 }) }
+          GridItem() { Button('cos').onClick(() => this.scientificFunction('cos')).backgroundColor('#f5f5f5').fontColor('#333333').fontSize(20).padding(10).border({ width: 1, color: '#e0e0e0' }).borderRadius(8).shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 }) }
+          GridItem() { Button('tan').onClick(() => this.scientificFunction('tan')).backgroundColor('#f5f5f5').fontColor('#333333').fontSize(20).padding(10).border({ width: 1, color: '#e0e0e0' }).borderRadius(8).shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 }) }
+          GridItem() { Button('√').onClick(() => this.scientificFunction('sqrt')).backgroundColor('#f5f5f5').fontColor('#333333').fontSize(20).padding(10).border({ width: 1, color: '#e0e0e0' }).borderRadius(8).shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 }) }
+          GridItem() { Button('log').onClick(() => this.scientificFunction('log')).backgroundColor('#f5f5f5').fontColor('#333333').fontSize(20).padding(10).border({ width: 1, color: '#e0e0e0' }).borderRadius(8).shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 }) }
+          GridItem() { Button('ln').onClick(() => this.scientificFunction('ln')).backgroundColor('#f5f5f5').fontColor('#333333').fontSize(20).padding(10).border({ width: 1, color: '#e0e0e0' }).borderRadius(8).shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 }) }
+          GridItem() { Button('x²').onClick(() => this.scientificFunction('square')).backgroundColor('#f5f5f5').fontColor('#333333').fontSize(20).padding(10).border({ width: 1, color: '#e0e0e0' }).borderRadius(8).shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 }) }
+          GridItem() { Button('xʸ').onClick(() => this.handleOperator('pow')).backgroundColor('#f5f5f5').fontColor('#333333').fontSize(20).padding(10).border({ width: 1, color: '#e0e0e0' }).borderRadius(8).shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 }) }
         }
         .columnsTemplate('1fr 1fr 1fr 1fr')
         .rowsTemplate('1fr 1fr')
@@ -430,61 +469,162 @@ struct Calculator {
           Button('AC')
             .onClick(() => this.clearAll())
             .backgroundColor('#ff5252')
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
         GridItem() {
           Button('C')
             .onClick(() => this.clear())
             .backgroundColor('#ff9800')
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
         GridItem() {
           Button('←')
             .onClick(() => this.backspace())
             .backgroundColor('#ff9800')
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
         GridItem() {
           Button('÷')
             .onClick(() => this.handleOperator('÷'))
             .backgroundColor('#4caf50')
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
 
-        GridItem() { Button('7').onClick(() => this.handleNumber('7')) }
-        GridItem() { Button('8').onClick(() => this.handleNumber('8')) }
-        GridItem() { Button('9').onClick(() => this.handleNumber('9')) }
+        GridItem() { 
+          Button('7')
+            .onClick(() => this.handleNumber('7'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
+        GridItem() { 
+          Button('8')
+            .onClick(() => this.handleNumber('8'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
+        GridItem() { 
+          Button('9')
+            .onClick(() => this.handleNumber('9'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
         GridItem() {
           Button('×')
             .onClick(() => this.handleOperator('×'))
             .backgroundColor('#4caf50')
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
 
-        GridItem() { Button('4').onClick(() => this.handleNumber('4')) }
-        GridItem() { Button('5').onClick(() => this.handleNumber('5')) }
-        GridItem() { Button('6').onClick(() => this.handleNumber('6')) }
+        GridItem() { 
+          Button('4')
+            .onClick(() => this.handleNumber('4'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
+        GridItem() { 
+          Button('5')
+            .onClick(() => this.handleNumber('5'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
+        GridItem() { 
+          Button('6')
+            .onClick(() => this.handleNumber('6'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
         GridItem() {
           Button('-')
             .onClick(() => this.handleOperator('-'))
             .backgroundColor('#4caf50')
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
 
-        GridItem() { Button('1').onClick(() => this.handleNumber('1')) }
-        GridItem() { Button('2').onClick(() => this.handleNumber('2')) }
-        GridItem() { Button('3').onClick(() => this.handleNumber('3')) }
+        GridItem() { 
+          Button('1')
+            .onClick(() => this.handleNumber('1'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
+        GridItem() { 
+          Button('2')
+            .onClick(() => this.handleNumber('2'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
+        GridItem() { 
+          Button('3')
+            .onClick(() => this.handleNumber('3'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
         GridItem() {
           Button('+')
             .onClick(() => this.handleOperator('+'))
             .backgroundColor('#4caf50')
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
 
         GridItem() {
           Button('0')
             .onClick(() => this.handleNumber('0'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
             .width('100%')
+            .fontColor('#000000')
         }.columnStart(0).columnEnd(1)
 
-        GridItem() { Button('.').onClick(() => this.handleNumber('.')) }
+        GridItem() { 
+          Button('.')
+            .onClick(() => this.handleNumber('.'))
+            .backgroundColor('#ffffff')
+            .border({ width: 1, color: '#e0e0e0' })
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
+            .fontColor('#000000')
+        }
         GridItem() {
           Button('=')
             .onClick(() => this.calculate())
             .backgroundColor('#2196f3')
+            .borderRadius(8)
+            .shadow({ radius: 2, color: '#00000033', offsetX: 1, offsetY: 1 })
         }
       }
       .columnsTemplate('1fr 1fr 1fr 1fr')
