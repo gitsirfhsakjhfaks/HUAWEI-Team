@@ -67,21 +67,24 @@ struct Calculator {
     // 如果当前显示错误，清空输入
     if (this.currentInput === 'Error') {
       this.currentInput = '0'
+      return
     }
 
     // 表达式总长度限制
     if (this.currentInput.length >= this.MAX_EXPRESSION_LENGTH) {
       this.currentInput = 'Error'
-      // setTimeout(() => this.clear(), 1000) // 1秒后自动清空
       return
     }
 
-    // 获取最后一个操作符位置（考虑空格）
+    // 移除末尾的空格
+    this.currentInput = this.currentInput.trimEnd()
+
+    // 获取最后一个操作符位置
     const lastOperatorIndex = this.currentInput.search(/[+\-×÷]\s*$/)
 
     if (lastOperatorIndex !== -1) {
       // 如果已存在操作符，替换最后一个操作符
-      this.currentInput = this.currentInput.slice(0, lastOperatorIndex) + ` ${op} `
+      this.currentInput = this.currentInput.slice(0, lastOperatorIndex).trimEnd() + ` ${op} `
     } else if (!this.isNewInput) {
       // 追加操作符
       this.currentInput += ` ${op} `
@@ -177,8 +180,12 @@ struct Calculator {
         let finalResult = numStack[0]
 
         // 处理超大/超小数的显示
-        if (finalResult.toString().length > this.MAX_NUMBER_LENGTH) {
-          finalResult = Number(finalResult.toExponential(6)) // 科学计数法显示
+        if (Math.abs(finalResult) >= 1e12 || (Math.abs(finalResult) < 1e-6 && finalResult !== 0)) {
+          // 使用科学计数法，保留6位有效数字
+          finalResult = Number(finalResult.toExponential(6))
+        } else {
+          // 对于普通数字，限制小数位数为8位
+          finalResult = Number(parseFloat(finalResult.toFixed(8)))
         }
 
         this.history.push(`${calculationExpression} = ${finalResult}`)
@@ -351,15 +358,17 @@ struct Calculator {
 
       // 显示区域
       Text(this.currentInput)
-        .fontSize(40)
+        .fontSize(this.currentInput.length > 15 ? 30 : 40) // 根据内容长度动态调整字体大小
         .textAlign(TextAlign.End)
         .width('100%')
         .height(80)
         .margin({ bottom: 10 })
-        .padding(10)
+        .padding({ left: 10, right: 10, top: 5, bottom: 5 })
         .backgroundColor('#e0f7fa')
         .borderRadius(10)
         .fontWeight(FontWeight.Bold)
+        .textOverflow({ overflow: TextOverflow.Ellipsis }) // 添加文本溢出处理
+        .maxLines(2) // 允许最多显示两行
 
       // 模式切换按钮
       Row() {
